@@ -8,6 +8,35 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <nav class="navbar navbar-default">
+
+    <div class="container">
+      <div class="navbar-header">
+        <%= link_to 'Movie Review', root_path, class: "navbar-brand"%>
+      </div>
+      <%if current_user %>
+        <ul class="nav navbar-nav">
+        <li><%= link_to 'add movie', new_movie_path %></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li style="font-size: 12px"><a href="#"><%= current_user.email%></a></li>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+        </ul>
+      <%else%>
+      <ul class="nav navbar-nav">
+          <li><%= link_to 'sign-up', new_user_registration_path %></li>
+          <li><%= link_to 'login', new_user_session_path %></li>
+        <%end%>
+      </ul>
+    </div>
+
+    
+  </nav>
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
   <body>
     <%= yield %>
   </body>
