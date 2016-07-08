@@ -1,6 +1,7 @@
 <h2>edit book</h2>
 <%= simple_form_for @movie, :html => {multipart: true} do |f| %>
 <%= f.select :category_id, @categories %>
+<%= f.file_field :movie_img %>
 <%= f.input :title, label: "Movie Title"%>
 <%= f.input :description %>
 <%= f.input :author %>

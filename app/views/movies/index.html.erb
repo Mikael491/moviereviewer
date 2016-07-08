@@ -5,7 +5,7 @@
 	<h1>All Movies</h1>
 	<%end%>
 <% @movies.each do |movie| %>
-	<h2><%= link_to movie.title, movie_path(movie) %></h2>
+	<a href="/movies/<%=movie.id%>"><%= image_tag movie.movie_img.url(:movie_index) %>
 <%end%>
 <%else%>
 	<div class="jumbotron">
