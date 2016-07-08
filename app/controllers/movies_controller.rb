@@ -3,15 +3,22 @@ class MoviesController < ApplicationController
 	before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@movies = Movie.all.order('created_at DESC')
+		if params[:category]
+			@category_id = Category.find_by(name: params[:category]).id
+			@movies = Movie.where(category_id: @category_id).order('created_at DESC')
+		else
+			@movies = Movie.all.order('created_at DESC')
+		end
 	end
 
 	def new
-		@movie = Movie.new
+		@movie = current_user.movies.build
+		@categories = Category.all.map {|cat| [cat.name, cat.id]}
 	end
 
 	def create
-		@movie = Movie.new(movie_params)
+		@movie = current_user.movies.build(movie_params)
+		@movie.category_id = params[:category_id]
 
 		if @movie.save
 			redirect_to root_path
@@ -25,10 +32,12 @@ class MoviesController < ApplicationController
 	end
 
 	def edit
+		@categories = Category.all.map {|cat| [cat.name, cat.id]}
 	end
 
 
 	def update
+		@movie.category_id = params[:category_id]
 		if @movie.update(movie_params)
 			redirect_to movie_path(@movie)
 		else
@@ -50,5 +59,6 @@ class MoviesController < ApplicationController
 	def find_movie
 		@movie = Movie.find(params[:id])
 	end
+
 
 end

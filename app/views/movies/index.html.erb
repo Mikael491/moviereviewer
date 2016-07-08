@@ -1,5 +1,14 @@
-<h1>All Movies</h1>
-
+<%if current_user%>
+	<%if params[:category]%>
+	<h1><%=params[:category]%></h1>
+	<%else%>
+	<h1>All Movies</h1>
+	<%end%>
 <% @movies.each do |movie| %>
 	<h2><%= link_to movie.title, movie_path(movie) %></h2>
+<%end%>
+<%else%>
+	<div class="jumbotron">
+		<h1>Welcome! <small>Personal Movie/TV show reviewer</small></h1>
+	</div>	
 <%end%>

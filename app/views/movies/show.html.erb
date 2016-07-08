@@ -4,5 +4,7 @@
 <p><%= @movie.description %></p>
 
 <%= link_to 'back', root_path %>
+<%if @movie.user_id == current_user.id%>
 <%= link_to 'edit', edit_movie_path(@movie)%>
 <%= link_to 'delete', movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"}%>
+<%end%>
