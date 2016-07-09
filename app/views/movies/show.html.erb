@@ -7,8 +7,8 @@
 		<h4><%= @movie.author %></h4>
 		<h2>Average Rating</h2>
 		<!-- TODO: Make sure the stars are showing up for average rating -->
-		<div id="average" data-score=<%=@average_rating%>></div>
-
+		<div class="average-review-rating" data-score="<%=@average_review%>"></div>
+		<span>Based on <%=@movie.reviews.count%> reviews</span>
 		<p><%= @movie.description %></p>
 	</div>
 </div>
@@ -34,17 +34,16 @@
 <%end%>
 
 <script type="text/javascript">
-	$('#average').raty({
+	$('.average-review-rating').raty({
 		readOnly: true,
 		path: '/assets/',
 		score: function() {
 			return $(this).attr('data-score');
-		};
+		}
 	});
 </script>
 
-<script type="text/javascript">
-	
+<script type="text/javascript">	
 	$('.review-rating').raty({
 		readOnly: true,
 		path: '/assets/',
@@ -52,5 +51,4 @@
 			return $(this).attr('data-score');
 		}
 	});
-
 </script>

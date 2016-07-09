@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
 
 	before_action :find_movie, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, only: [:new, :edit, :destroy]
 
 	def index
 		if params[:category]
@@ -28,12 +29,12 @@ class MoviesController < ApplicationController
 	end
 
 	def show
-		if @reviews.blank?
+		if @movie.reviews.blank?
 			# puts "This is hitting if block"
-			@average_rating = 0
+			@average_review = 0
 		else
 			# puts "This is the else block"
-			@average_rating = @movie.reviews.average(:rating).round(2)
+			@average_review = @movie.reviews.average(:rating).round(2)
 		end
 	end
 
