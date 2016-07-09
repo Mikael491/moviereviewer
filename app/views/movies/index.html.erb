@@ -4,11 +4,15 @@
 	<%else%>
 	<h1>All Movies</h1>
 	<%end%>
+<div class="row">
 <% @movies.each do |movie| %>
-	<a href="/movies/<%=movie.id%>"><%= image_tag movie.movie_img.url(:movie_index) %>
+	<div class="col-md-3">
+		<a href="/movies/<%=movie.id%>"><%= image_tag movie.movie_img.url(:movie_index), class: "movie"%>
+	</div>
 <%end%>
+</div>
 <%else%>
 	<div class="jumbotron">
 		<h1>Welcome! <small>Personal Movie/TV show reviewer</small></h1>
-	</div>	
+	</div>
 <%end%>

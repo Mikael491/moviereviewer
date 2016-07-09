@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
 
 	def create
 		@movie = current_user.movies.build(movie_params)
-		@movie.category_id = params[:category_id]
+		# @movie.category_id = params[:category_id]
 
 		if @movie.save
 			redirect_to root_path
@@ -28,7 +28,11 @@ class MoviesController < ApplicationController
 	end
 
 	def show
-		
+		if @movie.reviews.blank?
+			@average_rating = 0
+		else
+			@average_rating = @movie.reviews.average(:rating).round(2)
+		end
 	end
 
 	def edit
@@ -37,7 +41,7 @@ class MoviesController < ApplicationController
 
 
 	def update
-		@movie.category_id = params[:category_id]
+		# @movie.category_id = params[:category_id]
 		if @movie.update(movie_params)
 			redirect_to movie_path(@movie)
 		else
@@ -53,7 +57,7 @@ class MoviesController < ApplicationController
 	private
 
 	def movie_params
-		params.require(:movie).permit(:title, :description, :author, :movie_img)
+		params.require(:movie).permit(:title, :description, :author, :category_id, :movie_img)
 	end
 
 	def find_movie
