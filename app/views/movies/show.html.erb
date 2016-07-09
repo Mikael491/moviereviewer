@@ -6,10 +6,14 @@
 		<h2><%= @movie.title %></h2>
 		<h4><%= @movie.author %></h4>
 		<h2>Average Rating</h2>
-		<div class="average-review-rating" data-score=<%=@average_review%>></div>
+		<!-- TODO: Make sure the stars are showing up for average rating -->
+		<div id="average" data-score=<%=@average_rating%>></div>
+
 		<p><%= @movie.description %></p>
 	</div>
 </div>
+
+
 
 <div class="row">
 	<div class="col-md-4">
@@ -29,25 +33,24 @@
 <%= link_to 'delete', movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"}%>
 <%end%>
 
-
 <script type="text/javascript">
-	
-	$('.review-rating').raty({
-		readOnly: true,
-		score: function() {
-			return $(this).attr('data-score');
-		},
-		path: '/assets/'
-	});
-
-</script>
-
-<script type="text/javascript">
-	$('.average-review-rating').raty({
+	$('#average').raty({
 		readOnly: true,
 		path: '/assets/',
 		score: function() {
 			return $(this).attr('data-score');
 		};
 	});
+</script>
+
+<script type="text/javascript">
+	
+	$('.review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score');
+		}
+	});
+
 </script>

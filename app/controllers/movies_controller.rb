@@ -28,9 +28,11 @@ class MoviesController < ApplicationController
 	end
 
 	def show
-		if @movie.reviews.blank?
+		if @reviews.blank?
+			# puts "This is hitting if block"
 			@average_rating = 0
 		else
+			# puts "This is the else block"
 			@average_rating = @movie.reviews.average(:rating).round(2)
 		end
 	end
