@@ -142,7 +142,7 @@ p.alert, p.notice {
 
 }
 
-.book-links {
+.movie-links {
 
 	.btn-custom {
 		padding: 3px 10px;
@@ -152,25 +152,25 @@ p.alert, p.notice {
 
 }
 
-/* Book styles */
+/* movie styles */
 
-.book {
+.movie {
 	height: 350px;
 	width: 250px;
 	margin-bottom: 40px;
 	@include background-tile;
 }
 
-.book-show {
+.movie-show {
 	height: 475px;
 	width: 325px;
 	@include background-tile;
 }
 
-.book-info {
+.movie-info {
 	@include background-tile;
 
-	.book-title {
+	.movie-title {
 		margin-top: 0;
 		font-size: 2em;
 	}
@@ -186,7 +186,7 @@ p.alert, p.notice {
 		font-style: italic;
 	}
 
-	.book-author {
+	.movie-author {
 		font-size: 1.5em;
 		margin-top: 10px;
 		margin-bottom: 10px;
@@ -195,7 +195,7 @@ p.alert, p.notice {
 		}	
 	}
 
-	.book-desc {
+	.movie-desc {
 		font-size: 1.05em;
 		line-height: 1.5;
 		margin-bottom: 15px;
@@ -243,9 +243,9 @@ p.alert, p.notice {
 
 }
 
-/* New Book Form styles */
+/* New movie Form styles */
 
-.new-book-form {
+.new-movie-form {
 	@include background-tile;
 
 	h1 {
@@ -256,16 +256,16 @@ p.alert, p.notice {
 		margin-bottom: 10px;
 	}
 
-	#book_book_img {
+	#movie_movie_img {
 		margin-bottom: 10px;
 	}
 
 }
 
 
-/* Edit Book Form styles */
+/* Edit movie Form styles */
 
-.edit-book-form {
+.edit-movie-form {
 
 	@include background-tile;
 
@@ -273,11 +273,11 @@ p.alert, p.notice {
 		margin-top: 0;
 	}
 
-	#book_category_id {
+	#movie_category_id {
 		margin-bottom: 10px;
 	}
 
-	#book_book_img {
+	#movie_movie_img {
 		margin-bottom: 10px;
 	}
 

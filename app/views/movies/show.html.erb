@@ -3,13 +3,15 @@
 		<%= image_tag @movie.movie_img.url(:movie_show), class: "movie-show" %>
 	</div>
 	<div class="col-md-8">
-		<h2><%= @movie.title %></h2>
-		<h4><%= @movie.author %></h4>
-		<h2>Average Rating</h2>
-		<!-- TODO: Make sure the stars are showing up for average rating -->
-		<div class="average-review-rating" data-score="<%=@average_review%>"></div>
-		<span>Based on <%=@movie.reviews.count%> reviews</span>
-		<p><%= @movie.description %></p>
+		<div class="movie-info">
+			<h2 class="movie-title"><%= @movie.title %></h2>
+			<h4 class="movie-author"><span>Director:</span> <%= @movie.author %></h4>
+			<h2 class="avg-rating">Average Rating</h2>
+			<!-- TODO: Make sure the stars are showing up for average rating -->
+			<div class="average-review-rating" data-score="<%=@average_review%>"></div>
+			<span class="number-of-reviews">Based on <%=@movie.reviews.count%> reviews</span>
+			<p class="movie-desc"><%= @movie.description %></p>
+		</div>
 	</div>
 </div>
 
@@ -18,20 +20,24 @@
 <div class="row">
 	<div class="col-md-4">
 		<!-- Reviews/Rating -->
-		<%= render @movie.reviews %>
-
-		<div>
-			<%= link_to 'add review', new_movie_review_path(@movie) %>
-		</div>
+		<div class="reviews">
+			<h1>Reviews</h1>
+			<%= render @movie.reviews %>
+	
+			<div>
+				<%= link_to 'add review', new_movie_review_path(@movie), class: "btn btn-custom" %>
+			</div>
+		</div>	
 	</div>
 </div>
 
-
-<%= link_to 'back', root_path %>
-<%if @movie.user_id == current_user.id%>
-<%= link_to 'edit', edit_movie_path(@movie)%>
-<%= link_to 'delete', movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"}%>
-<%end%>
+<div class="links btn-group">
+	<%= link_to 'back', root_path, class: "btn btn-custom" %>
+	<%if @movie.user_id == current_user.id%>
+	<%= link_to 'edit', edit_movie_path(@movie), class: "btn btn-custom"%>
+	<%= link_to 'delete', movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-custom"%>
+	<%end%>
+</div>
 
 <script type="text/javascript">
 	$('.average-review-rating').raty({
